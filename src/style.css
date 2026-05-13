@@ -1,0 +1,210 @@
+:root {
+  --bg:           #EDEBE5;
+  --surface:      #FAFAF7;
+  --bar-bg:       rgba(237, 235, 229, 0.96);
+  --border:       #D6D3CB;
+  --border-soft:  #E5E2DC;
+  --text:         #1A1916;
+  --muted:        #7A7770;
+  --accent:       #2A63D4;
+  --accent-pale:  rgba(42, 99, 212, 0.10);
+  --font-ui:      'DM Sans', system-ui, sans-serif;
+  --font-editor:  'Lora', Georgia, serif;
+  --radius:       10px;
+  --radius-pill:  999px;
+  --paper-shadow: 0 2px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+}
+
+html, body, #app {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  
+}
+
+/* ─── Editor Scroll Area ─── */
+#editor-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* hide scrollbar but keep scroll */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  height: 90dvh;
+}
+
+/* ─── Quill Toolbar ─── */
+.ql-toolbar.ql-snow {
+  border: none !important;
+  background: var(--bg);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.ql-toolbar.ql-snow button:hover {
+  background: var(--border-soft) !important;
+}
+
+.ql-toolbar.ql-snow button.ql-active {
+  background: var(--accent-pale) !important;
+  color: var(--accent) !important;
+}
+
+.ql-toolbar.ql-snow button.ql-active .ql-stroke {
+  stroke: var(--accent) !important;
+}
+
+.ql-toolbar.ql-snow button.ql-active .ql-fill {
+  fill: var(--accent) !important;
+}
+
+.ql-toolbar.ql-snow .ql-picker-label {
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 6px !important;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.ql-toolbar.ql-snow .ql-picker-label:hover {
+  border-color: var(--border) !important;
+  background: var(--border-soft) !important;
+}
+
+/* ─── Quill Container ─── */
+.ql-container.ql-snow {
+  border: none !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Editor (Paper) ─── */
+.ql-editor {
+  font-family: var(--font-editor) !important;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text);
+
+  /* Paper card */
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--paper-shadow);
+  border: 1px solid var(--border-soft);
+  overflow: auto;
+}
+
+/* Disabled (view mode) — subtle cue */
+.ql-container.ql-disabled .ql-editor {
+  background: var(--viewOnly);
+  cursor: default;
+}
+
+/* undo redo btn */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.12s;
+}
+
+.action-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(42, 99, 212, 0.22);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* teks hilang di layar super kecil */
+@media (max-width: 360px) {
+  .action-btn span { display: none; }
+  .action-btn { padding: 8px 10px; }
+}
+
+/* viewmode toggle */
+.view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.view-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* slider */
+.toggle-pill {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--border);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+/* thumb slider */
+.toggle-pill::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+  transition: transform 0.2s;
+}
+
+.view-toggle input:checked + .toggle-pill {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.view-toggle input:checked + .toggle-pill::after {
+  transform: translateX(18px);
+}
+
+/* Label */
+.toggle-label {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.view-toggle:has(input:checked) .toggle-label {
+  color: var(--accent);
+}
