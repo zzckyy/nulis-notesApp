@@ -734,6 +734,267 @@ html, body {
   color: var(--accent);
 }
 
+/* ─────────────────────────────────────────
+   CONFIRM MODAL
+───────────────────────────────────────── */
+
+.modal-sheet--sm {
+  max-width: 360px;
+  text-align: center;
+}
+
+.confirm-icon {
+  font-size: 2rem;
+  color: var(--danger);
+  margin-bottom: 0.6rem;
+}
+
+.modal-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
+.btn-danger:hover {
+  background: #b83c3c;
+  border-color: #b83c3c;
+}
+
+/* ─────────────────────────────────────────
+   SETTINGS DRAWER
+───────────────────────────────────────── */
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: rgba(26, 25, 22, 0.45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.drawer-overlay.is-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.drawer-sheet {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 0 0 2rem;
+  max-height: 88dvh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  box-shadow: 0 -4px 32px rgba(0,0,0,0.12);
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.drawer-overlay.is-active .drawer-sheet {
+  transform: translateY(0);
+}
+
+/* Drag handle via pseudo-element */
+.drawer-sheet::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--border);
+  margin: 0.9rem auto 0;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.1rem 0.5rem;
+}
+
+.drawer-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ─── Stats pills ─── */
+.settings-stats {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1.1rem 0.75rem;
+  flex-wrap: wrap;
+}
+
+.stats-pill {
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+}
+
+.stats-pill strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ─── Section label ─── */
+.settings-section-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.75rem 1.1rem 0.35rem;
+}
+
+.settings-section-label--danger {
+  color: var(--danger);
+}
+
+/* ─── Settings list ─── */
+.settings-list {
+  margin: 0 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.settings-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-soft);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition);
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item:hover {
+  background: var(--surface);
+}
+
+.settings-item:active {
+  background: var(--surface-2);
+}
+
+/* Icon badge */
+.settings-item__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.settings-item__icon--blue  { background: #2A63D4; }
+.settings-item__icon--green { background: #3aaa6e; }
+.settings-item__icon--red   { background: var(--danger); }
+
+.settings-item__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.settings-item__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.settings-item--danger .settings-item__title {
+  color: var(--danger);
+}
+
+.settings-item__sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.settings-item__arrow {
+  font-size: 0.7rem;
+  color: var(--border);
+  flex-shrink: 0;
+}
+
+/* ─── Version footer ─── */
+.settings-version {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--border);
+  padding: 1.5rem 0 0;
+}
+
+/* ─────────────────────────────────────────
+   TOAST
+───────────────────────────────────────── */
+
+.toast {
+  position: fixed;
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--text);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  white-space: nowrap;
+}
+
+.toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast--success { background: #2e7d52; }
+.toast--danger  { background: var(--danger); }
+
 /* ─── Responsive tweaks ─── */
 @media (min-width: 768px) {
   .notes-list {
@@ -742,6 +1003,7 @@ html, body {
     gap: 0.75rem;
   }
 
+  /* Modals: center + scale in instead of slide up */
   .modal-overlay {
     align-items: center;
   }
@@ -755,10 +1017,41 @@ html, body {
   .modal-overlay.is-active .modal-sheet {
     transform: scale(1) translateY(0);
   }
+
+  /* Settings drawer: side panel on desktop */
+  .drawer-overlay {
+    align-items: stretch;
+    justify-content: flex-end;
+  }
+
+  .drawer-sheet {
+    width: 340px;
+    max-width: 340px;
+    max-height: 100dvh;
+    border-radius: var(--radius) 0 0 var(--radius);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+  }
+
+  .drawer-overlay.is-active .drawer-sheet {
+    transform: translateX(0);
+  }
+
+  /* Note card delete always visible on desktop (no hover needed) */
+  .note-card__delete {
+    opacity: 0;
+  }
 }
 
 @media (min-width: 1024px) {
   .notes-list {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* On touch devices, always show delete button */
+@media (hover: none) {
+  .note-card__delete {
+    opacity: 1;
   }
 }
