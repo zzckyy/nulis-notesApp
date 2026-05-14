@@ -1,0 +1,6 @@
+{
+  "appId": "com.momaza.nulis",
+  "appName": "nulis",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
