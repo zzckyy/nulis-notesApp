@@ -1,6 +1,6 @@
 [package]
 name = "nulis"
-version = "0.1"
+version = "1.0.0"
 description = "Nulis is a simple usefull app for taking notes"
 authors = ["MOMAZA"]
 license = ""
