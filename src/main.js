@@ -515,7 +515,6 @@ document.getElementById("settings-btn").addEventListener("click", () => {
   const words = notes.reduce((acc, n) => acc + (n.contentText?.split(/\s+/).filter(Boolean).length || 0), 0);
   document.getElementById("settings-stats").innerHTML = `
     <span class="stats-pill"><strong>${total}</strong> note${total !== 1 ? "s" : ""}</span>
-    <span class="stats-pill"><strong>${words.toLocaleString()}</strong> word${words !== 1 ? "s" : ""}</span>
   `;
   openSettings();
 });

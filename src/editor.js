@@ -109,9 +109,9 @@ function escapeHtml(str) {
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike", "clean"],
   [{ color: [] }, { background: [] }],
-  ["link", "image"],
+  ["link", "image"],[{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
   [{ header: [1, 2, 3, 4, 5, 6, false] }, { align: [] }],
-  [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+  
 ];
 
 const quill = new Quill("#quill-editor", {
@@ -119,7 +119,7 @@ const quill = new Quill("#quill-editor", {
     toolbar: toolbarOptions,
     history: { delay: 1000, maxStack: 100, userOnly: false },
   },
-  placeholder: "Start writing…",
+  placeholder: "",
   theme: "snow",
 });
 
